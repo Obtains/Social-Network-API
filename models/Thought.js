@@ -1,5 +1,5 @@
 // Dependencies
-const { Schema, model, Types } =('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 const reactionSchema = require('./Reaction');
 
@@ -23,7 +23,7 @@ const thoughtSchema = new Schema({
     reactions: [reactionSchema]
 },
 {
-    toJson: {
+    toJSON: {
         virtuals: true,
         getters: true
     },
@@ -37,4 +37,4 @@ thoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
 });
 // Export
-moduke.exports = Thought;
+module.exports = Thought;
