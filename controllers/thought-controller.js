@@ -12,7 +12,7 @@ const thoughtController = {
             })
     },
     getThoughtById(req, res) {
-        Thought.find({})
+        Thought.findOne({})
             .populate({ path: 'reactions', select: '-__v' })
             .select('-__v')
             .then(thoughtData => {
@@ -29,7 +29,9 @@ const thoughtController = {
     },
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate(
-            { _id: params.id }, body, { new: true })
+            { _id: params.id }, 
+            body, 
+            { new: true })
             .then(thoughtData => {
                 if (!thoughtData) {
                     res.status(404).json({ message: 'No Thoughts Found!' });
@@ -46,6 +48,16 @@ const thoughtController = {
                     { _id: params.userId },
                     { $push: { thoughts: _id } },
                     { new: true });
+            })
+            .then(thoughtData => {
+                if (!thoughtData) {
+                    res.status(404).json({ message: 'No Thoughts Found!'});
+                    return;
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
             })
     },
     deleteThought({ params }, res) {

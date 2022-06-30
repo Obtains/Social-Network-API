@@ -1,5 +1,9 @@
 # Social-Network-API
 
+## Walkthrough Video
+
+Watch this [video](https://drive.google.com/file/d/1UWn_z-wAsjTp-7HjOxF5WxQhlIoGMudq/view) for a quick show of insomina.
+
 ## Table-of-Contents
   * [Description](#description)
   * [Installation](#installation)
